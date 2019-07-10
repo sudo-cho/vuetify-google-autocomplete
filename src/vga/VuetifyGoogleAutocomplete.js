@@ -705,6 +705,7 @@ export default {
      */
     clear() {
       this.autocompleteText = '';
+      this.$refs.textField.clearableCallback();
     },
 
     /**
@@ -859,6 +860,7 @@ export default {
   render(createElement) {
     const self = this;
     return createElement('v-text-field', {
+      ref: 'textField',
       attrs: {
         id: self.id,
         name: self.id,
