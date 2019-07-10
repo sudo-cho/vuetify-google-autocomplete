@@ -783,7 +783,7 @@ export default {
       this.autocomplete.addListener('place_changed', () => {
         const place = this.autocomplete.getPlace();
 
-        if (!place.geometry) {
+        if (!place || !place.geometry) {
           // User entered the name of a Place that was not suggested and
           // pressed the Enter key, or the Place Details request failed.
           this.$emit('no-results-found', place);
