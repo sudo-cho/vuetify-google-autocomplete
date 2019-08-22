@@ -799,7 +799,7 @@ export default {
       this.autocomplete.addListener('place_changed', () => {
         const place = this.autocomplete.getPlace();
 
-        if (!place.geometry) {
+        if (Object.keys(place).length < 2) {
           // User entered the name of a Place that was not suggested and
           // pressed the Enter key, or the Place Details request failed.
           this.$emit('no-results-found', place);
@@ -822,14 +822,18 @@ export default {
               returnData[addressType] = val;
             }
           }
-
-          returnData.latitude = place.geometry.location.lat();
-          returnData.longitude = place.geometry.location.lng();
+          if (place.geometry) {
+            returnData.latitude = place.geometry.location.lat();
+            returnData.longitude = place.geometry.location.lng();
+          }
 
           // additional fields available in google places results
-          returnData.name = place.name;
-          returnData.photos = place.photos;
-          returnData.place_id = place.place_id;
+          if (place.name)
+            returnData.name = place.name;
+          if (place.photos)
+            returnData.photos = place.photos;
+          if (place.place_id)
+            returnData.place_id = place.place_id;
 
           // return returnData object and PlaceResult object
           this.$emit('placechanged', returnData, place, this.id);
@@ -991,9 +995,9 @@ export default {
     fields: function fields(newVal) {
       if (newVal) {
         if (typeof newVal == "string") {
-          this.fields = [newVal];
+          this.setFields([newVal]);
         } else {
-          this.fields = newVal;
+          this.setFields(newVal);
         }
       }
     },
