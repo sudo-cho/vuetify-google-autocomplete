@@ -226,7 +226,8 @@ export default {
       default: () => [],
     },
     /**
-     * Fields to be included for the Place in the details response when the details are successfully retrieved, which will be billed for.
+     * Fields to be included for the Place in the details response when the details
+     * are successfully retrieved, which will be billed for.
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions.fields}
      * @type {String|Array}
      */
@@ -779,7 +780,7 @@ export default {
       }
 
       if (this.fields) {
-        if (typeof this.fields == "string") {
+        if (typeof this.fields === 'string') {
           options.fields = [this.fields];
         } else {
           options.fields = this.fields;
@@ -828,12 +829,15 @@ export default {
           }
 
           // additional fields available in google places results
-          if (place.name)
+          if (place.name) {
             returnData.name = place.name;
-          if (place.photos)
+          }
+          if (place.photos) {
             returnData.photos = place.photos;
-          if (place.place_id)
+          }
+          if (place.place_id) {
             returnData.place_id = place.place_id;
+          }
 
           // return returnData object and PlaceResult object
           this.$emit('placechanged', returnData, place, this.id);
@@ -994,7 +998,7 @@ export default {
      */
     fields: function fields(newVal) {
       if (newVal) {
-        if (typeof newVal == "string") {
+        if (typeof newVal === 'string') {
           this.setFields([newVal]);
         } else {
           this.setFields(newVal);
