@@ -4,8 +4,8 @@
  */
 export default {
   /**
-  * Component name. Returns 'vuetify-google-autocomplete'.
-  */
+   * Component name. Returns 'vuetify-google-autocomplete'.
+   */
   name: 'vuetify-google-autocomplete',
   /**
    * @mixin
@@ -224,6 +224,16 @@ export default {
     errorMessages: {
       type: Array,
       default: () => [],
+    },
+    /**
+     * Fields to be included for the Place in the details response when the details
+     * are successfully retrieved, which will be billed for.
+     * @see {@link https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions.fields}
+     * @type {String|Array}
+     */
+    fields: {
+      type: [String, Array],
+      default: null,
     },
     /**
      * Maps to Vuetify 'flat' prop.
@@ -734,10 +744,10 @@ export default {
     },
 
     /**
-    * Bias the autocomplete object to the user's geographical location,
-    * as supplied by the browser's 'navigator.geolocation' object.
-    * @access private
-    */
+     * Bias the autocomplete object to the user's geographical location,
+     * as supplied by the browser's 'navigator.geolocation' object.
+     * @access private
+     */
     geolocate() {
       if (this.enableGeolocation && !this.geolocateSet) {
         if (navigator.geolocation) {
@@ -770,6 +780,14 @@ export default {
         };
       }
 
+      if (this.fields) {
+        if (typeof this.fields === 'string') {
+          options.fields = [this.fields];
+        } else {
+          options.fields = this.fields;
+        }
+      }
+
       this.autocomplete = new window.google.maps.places.Autocomplete(
         document.getElementById(this.id),
         options,
@@ -783,7 +801,8 @@ export default {
       this.autocomplete.addListener('place_changed', () => {
         const place = this.autocomplete.getPlace();
 
-        if (!place || !place.geometry) {
+        // if (!place || !place.geometry) {
+        if (Object.keys(place).length < 2) {
           // User entered the name of a Place that was not suggested and
           // pressed the Enter key, or the Place Details request failed.
           this.$emit('no-results-found', place);
@@ -806,14 +825,21 @@ export default {
               returnData[addressType] = val;
             }
           }
-
-          returnData.latitude = place.geometry.location.lat();
-          returnData.longitude = place.geometry.location.lng();
+          if (place.geometry) {
+            returnData.latitude = place.geometry.location.lat();
+            returnData.longitude = place.geometry.location.lng();
+          }
 
           // additional fields available in google places results
-          returnData.name = place.name;
-          returnData.photos = place.photos;
-          returnData.place_id = place.place_id;
+          if (place.name) {
+            returnData.name = place.name;
+          }
+          if (place.photos) {
+            returnData.photos = place.photos;
+          }
+          if (place.place_id) {
+            returnData.place_id = place.place_id;
+          }
 
           // return returnData object and PlaceResult object
           this.$emit('placechanged', returnData, place, this.id);
@@ -941,7 +967,7 @@ export default {
           if (event && event.target) {
             self.value = event.target.value;
             self.$emit('input', event.target.value);
-          } else {
+          } else if (!event) {
             // clear was pressed, reset this
             self.autocompleteText = '';
             self.$emit('placechanged', null);
@@ -955,15 +981,15 @@ export default {
    */
   watch: {
     /**
-    * Emit the new autocomplete text whenever it changes.
-    */
+     * Emit the new autocomplete text whenever it changes.
+     */
     autocompleteText: function autocompleteText(newVal) {
       this.$emit('input', newVal || '');
     },
 
     /**
-    * Update the SDK country option whenever it changes from the parent.
-    */
+     * Update the SDK country option whenever it changes from the parent.
+     */
     country: function country(newVal) {
       if (newVal) {
         this.autocomplete.componentRestrictions.country = newVal;
@@ -971,8 +997,21 @@ export default {
     },
 
     /**
-    * Watches for changes on the Geolocation option.
-    */
+     * Update the SDK fields option whenever it changes from the parent.
+     */
+    fields: function fields(newVal) {
+      if (newVal) {
+        if (typeof newVal === 'string') {
+          this.setFields([newVal]);
+        } else {
+          this.setFields(newVal);
+        }
+      }
+    },
+
+    /**
+     * Watches for changes on the Geolocation option.
+     */
     enableGeolocation: function enableGeolocation(newVal) {
       if (!newVal) {
         this.geolocateSet = false;
@@ -988,8 +1027,8 @@ export default {
     },
 
     /**
-    * Update the SDK types option whenever it changes from the parent.
-    */
+     * Update the SDK types option whenever it changes from the parent.
+     */
     types: function types(newVal) {
       if (newVal) {
         this.autocomplete.setTypes([this.types]);

@@ -28,6 +28,7 @@ For more detailed HTML output of the JSDocs, refer to the ``./docs`` directory.
         * [.enable-geolocation](#module_vuetify-google-autocomplete.props.enable-geolocation) : <code>Boolean</code>
         * [.error](#module_vuetify-google-autocomplete.props.error) : <code>Boolean</code>
         * [.error-messages](#module_vuetify-google-autocomplete.props.error-messages) : <code>Array</code>
+        * [.fields](#module_vuetify-google-autocomplete.props.fields) : <code>String</code> \| <code>Array</code>
         * [.flat](#module_vuetify-google-autocomplete.props.flat) : <code>Boolean</code>
         * [.full-width](#module_vuetify-google-autocomplete.props.full-width) : <code>Boolean</code>
         * [.hide-details](#module_vuetify-google-autocomplete.props.hide-details) : <code>Boolean</code>
@@ -73,6 +74,7 @@ For more detailed HTML output of the JSDocs, refer to the ``./docs`` directory.
     * [.watch](#module_vuetify-google-autocomplete.watch)
         * [.autocompleteText()](#module_vuetify-google-autocomplete.watch.autocompleteText)
         * [.country()](#module_vuetify-google-autocomplete.watch.country)
+        * [.fields()](#module_vuetify-google-autocomplete.watch.fields)
         * [.enableGeolocation()](#module_vuetify-google-autocomplete.watch.enableGeolocation)
         * [.types()](#module_vuetify-google-autocomplete.watch.types)
     * [.name](#module_vuetify-google-autocomplete.name)
@@ -104,6 +106,7 @@ Exposed component props.
     * [.enable-geolocation](#module_vuetify-google-autocomplete.props.enable-geolocation) : <code>Boolean</code>
     * [.error](#module_vuetify-google-autocomplete.props.error) : <code>Boolean</code>
     * [.error-messages](#module_vuetify-google-autocomplete.props.error-messages) : <code>Array</code>
+    * [.fields](#module_vuetify-google-autocomplete.props.fields) : <code>String</code> \| <code>Array</code>
     * [.flat](#module_vuetify-google-autocomplete.props.flat) : <code>Boolean</code>
     * [.full-width](#module_vuetify-google-autocomplete.props.full-width) : <code>Boolean</code>
     * [.hide-details](#module_vuetify-google-autocomplete.props.hide-details) : <code>Boolean</code>
@@ -261,6 +264,14 @@ Maps to Vuetify 'error-messages' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.fields"></a>
+
+#### props.fields : <code>String</code> \| <code>Array</code>
+Fields to be included for the Place in the details response when the details
+are successfully retrieved, which will be billed for.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions.fields](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions.fields)  
 <a name="module_vuetify-google-autocomplete.props.flat"></a>
 
 #### props.flat : <code>Boolean</code>
@@ -560,6 +571,7 @@ See code.
 * [.watch](#module_vuetify-google-autocomplete.watch)
     * [.autocompleteText()](#module_vuetify-google-autocomplete.watch.autocompleteText)
     * [.country()](#module_vuetify-google-autocomplete.watch.country)
+    * [.fields()](#module_vuetify-google-autocomplete.watch.fields)
     * [.enableGeolocation()](#module_vuetify-google-autocomplete.watch.enableGeolocation)
     * [.types()](#module_vuetify-google-autocomplete.watch.types)
 
@@ -573,6 +585,12 @@ Emit the new autocomplete text whenever it changes.
 
 #### watch.country()
 Update the SDK country option whenever it changes from the parent.
+
+**Kind**: static method of [<code>watch</code>](#module_vuetify-google-autocomplete.watch)  
+<a name="module_vuetify-google-autocomplete.watch.fields"></a>
+
+#### watch.fields()
+Update the SDK fields option whenever it changes from the parent.
 
 **Kind**: static method of [<code>watch</code>](#module_vuetify-google-autocomplete.watch)  
 <a name="module_vuetify-google-autocomplete.watch.enableGeolocation"></a>
