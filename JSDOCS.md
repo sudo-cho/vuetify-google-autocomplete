@@ -43,6 +43,7 @@ For more detailed HTML output of the JSDocs, refer to the ``./docs`` directory.
         * [.outline](#module_vuetify-google-autocomplete.props.outline) : <code>Boolean</code>
         * [.persistent-hint](#module_vuetify-google-autocomplete.props.persistent-hint) : <code>Boolean</code>
         * [.placeholder](#module_vuetify-google-autocomplete.props.placeholder) : <code>String</code>
+        * [.placeName](#module_vuetify-google-autocomplete.props.placeName) : <code>Boolean</code>
         * [.prefix](#module_vuetify-google-autocomplete.props.prefix) : <code>String</code>
         * [.prepend-icon](#module_vuetify-google-autocomplete.props.prepend-icon) : <code>String</code>
         * [.prepend-icon-cb](#module_vuetify-google-autocomplete.props.prepend-icon-cb) : <code>function</code>
@@ -121,6 +122,7 @@ Exposed component props.
     * [.outline](#module_vuetify-google-autocomplete.props.outline) : <code>Boolean</code>
     * [.persistent-hint](#module_vuetify-google-autocomplete.props.persistent-hint) : <code>Boolean</code>
     * [.placeholder](#module_vuetify-google-autocomplete.props.placeholder) : <code>String</code>
+    * [.placeName](#module_vuetify-google-autocomplete.props.placeName) : <code>Boolean</code>
     * [.prefix](#module_vuetify-google-autocomplete.props.prefix) : <code>String</code>
     * [.prepend-icon](#module_vuetify-google-autocomplete.props.prepend-icon) : <code>String</code>
     * [.prepend-icon-cb](#module_vuetify-google-autocomplete.props.prepend-icon-cb) : <code>function</code>
@@ -369,6 +371,13 @@ Maps to Vuetify 'placeholder' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.placeName"></a>
+
+#### props.placeName : <code>Boolean</code>
+Display place name when selecting a result
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://developers.google.com/places/web-service/autocomplete](https://developers.google.com/places/web-service/autocomplete)  
 <a name="module_vuetify-google-autocomplete.props.prefix"></a>
 
 #### props.prefix : <code>String</code>
