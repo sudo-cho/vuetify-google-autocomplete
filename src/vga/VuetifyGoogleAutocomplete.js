@@ -705,6 +705,7 @@ export default {
      */
     clear() {
       this.autocompleteText = '';
+      this.$refs.textField.clearableCallback();
     },
 
     /**
@@ -782,7 +783,7 @@ export default {
       this.autocomplete.addListener('place_changed', () => {
         const place = this.autocomplete.getPlace();
 
-        if (!place.geometry) {
+        if (!place || !place.geometry) {
           // User entered the name of a Place that was not suggested and
           // pressed the Enter key, or the Place Details request failed.
           this.$emit('no-results-found', place);
@@ -859,6 +860,7 @@ export default {
   render(createElement) {
     const self = this;
     return createElement('v-text-field', {
+      ref: 'textField',
       attrs: {
         id: self.id,
         name: self.id,
