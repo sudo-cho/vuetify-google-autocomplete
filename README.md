@@ -254,3 +254,11 @@ Push to your fork and [submit a pull request](https://github.com/MadimetjaShika/
 If all is well, your changes will be merged timeously!
 
 Feel free to also post issues for bug fixes or enhancements or anything.
+
+### Roadmap
+
+I'm planning on updating this library to support the most latest version of vuetify during the month of December 2019. This would include potentially having this library as a vue cli 3.* supported plugin.
+
+If you've got any requests, please post them via issues and i'll look into them.
+
+PS - I am looking for people to help me maintain this library. The demand has grown since creation and unfortunately i'm unable to support it regularly at an acceptable rate. If you're keen, please drop me a mail me at madi@mjshika.xyz.
