@@ -78,7 +78,7 @@ Simply start using the component in your HTML.
 <vuetify-google-autocomplete
     id="map"
     append-icon="search"
-    disabled="true"
+    v-bind:disabled="true"
     placeholder="Start typing"
     v-on:placechanged="getAddressData"
 >
@@ -100,7 +100,7 @@ In your template you can use this syntax:
 <vuetify-google-autocomplete
     id="map"
     append-icon="search"
-    disabled="true"
+    v-bind:disabled="true"
     classname="form-control"
     placeholder="Start typing"
     v-on:placechanged="getAddressData"
