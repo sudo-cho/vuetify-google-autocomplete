@@ -13,21 +13,23 @@ For more detailed HTML output of the JSDocs, refer to the ``./docs`` directory.
     * [.props](#module_vuetify-google-autocomplete.props)
         * [.addressComponents](#module_vuetify-google-autocomplete.props.addressComponents)
         * [.append-icon](#module_vuetify-google-autocomplete.props.append-icon) : <code>String</code>
-        * [.append-icon-cb](#module_vuetify-google-autocomplete.props.append-icon-cb) : <code>function</code>
-        * [.auto-grow](#module_vuetify-google-autocomplete.props.auto-grow) : <code>Boolean</code>
+        * [.append-outer-icon](#module_vuetify-google-autocomplete.props.append-outer-icon) : <code>Boolean</code>
         * [.autofocus](#module_vuetify-google-autocomplete.props.autofocus) : <code>Boolean</code>
-        * [.box](#module_vuetify-google-autocomplete.props.box) : <code>Boolean</code>
+        * [.background-color](#module_vuetify-google-autocomplete.props.background-color) : <code>Boolean</code>
         * [.browserAutocomplete](#module_vuetify-google-autocomplete.props.browserAutocomplete) : <code>String</code>
+        * [.clear-icon](#module_vuetify-google-autocomplete.props.clear-icon) : <code>Boolean</code>
         * [.clearable](#module_vuetify-google-autocomplete.props.clearable) : <code>Boolean</code>
         * [.color](#module_vuetify-google-autocomplete.props.color) : <code>String</code>
         * [.counter](#module_vuetify-google-autocomplete.props.counter) : <code>Boolean</code> \| <code>Number</code> \| <code>String</code>
         * [.country](#module_vuetify-google-autocomplete.props.country) : <code>String</code> \| <code>Array</code>
         * [.dark](#module_vuetify-google-autocomplete.props.dark) : <code>Boolean</code>
+        * [.dense](#module_vuetify-google-autocomplete.props.dense) : <code>Boolean</code>
         * [.disabled](#module_vuetify-google-autocomplete.props.disabled) : <code>Boolean</code>
-        * [.dont-fill-mask-blanks](#module_vuetify-google-autocomplete.props.dont-fill-mask-blanks) : <code>Boolean</code>
         * [.enable-geolocation](#module_vuetify-google-autocomplete.props.enable-geolocation) : <code>Boolean</code>
         * [.error](#module_vuetify-google-autocomplete.props.error) : <code>Boolean</code>
+        * [.error-count](#module_vuetify-google-autocomplete.props.error-count) : <code>Boolean</code>
         * [.error-messages](#module_vuetify-google-autocomplete.props.error-messages) : <code>Array</code>
+        * [.filled](#module_vuetify-google-autocomplete.props.filled) : <code>Array</code>
         * [.fields](#module_vuetify-google-autocomplete.props.fields) : <code>String</code> \| <code>Array</code>
         * [.flat](#module_vuetify-google-autocomplete.props.flat) : <code>Boolean</code>
         * [.full-width](#module_vuetify-google-autocomplete.props.full-width) : <code>Boolean</code>
@@ -36,29 +38,33 @@ For more detailed HTML output of the JSDocs, refer to the ``./docs`` directory.
         * [.id](#module_vuetify-google-autocomplete.props.id) : <code>String</code>
         * [.label](#module_vuetify-google-autocomplete.props.label) : <code>String</code>
         * [.light](#module_vuetify-google-autocomplete.props.light) : <code>Boolean</code>
+        * [.loader-height](#module_vuetify-google-autocomplete.props.loader-height) : <code>Boolean</code> \| <code>String</code>
+        * [.loading](#module_vuetify-google-autocomplete.props.loading) : <code>Boolean</code> \| <code>String</code>
         * [.loading](#module_vuetify-google-autocomplete.props.loading) : <code>Boolean</code> \| <code>String</code>
         * [.mask](#module_vuetify-google-autocomplete.props.mask) : <code>Object</code> \| <code>String</code>
-        * [.multi-line](#module_vuetify-google-autocomplete.props.multi-line) : <code>Boolean</code>
         * [.no-resize](#module_vuetify-google-autocomplete.props.no-resize) : <code>Boolean</code>
-        * [.outline](#module_vuetify-google-autocomplete.props.outline) : <code>Boolean</code>
+        * [.outlined](#module_vuetify-google-autocomplete.props.outlined) : <code>Boolean</code>
         * [.persistent-hint](#module_vuetify-google-autocomplete.props.persistent-hint) : <code>Boolean</code>
         * [.placeholder](#module_vuetify-google-autocomplete.props.placeholder) : <code>String</code>
         * [.placeName](#module_vuetify-google-autocomplete.props.placeName) : <code>Boolean</code>
         * [.prefix](#module_vuetify-google-autocomplete.props.prefix) : <code>String</code>
         * [.prepend-icon](#module_vuetify-google-autocomplete.props.prepend-icon) : <code>String</code>
-        * [.prepend-icon-cb](#module_vuetify-google-autocomplete.props.prepend-icon-cb) : <code>function</code>
+        * [.prepend-inner-icon](#module_vuetify-google-autocomplete.props.prepend-inner-icon) : <code>String</code>
         * [.readonly](#module_vuetify-google-autocomplete.props.readonly) : <code>Boolean</code>
         * [.required](#module_vuetify-google-autocomplete.props.required) : <code>Boolean</code>
         * [.return-masked-value](#module_vuetify-google-autocomplete.props.return-masked-value) : <code>Boolean</code>
         * [.reverse](#module_vuetify-google-autocomplete.props.reverse) : <code>Boolean</code>
-        * [.row-height](#module_vuetify-google-autocomplete.props.row-height) : <code>Number</code> \| <code>String</code>
+        * [.rounded](#module_vuetify-google-autocomplete.props.rounded) : <code>Boolean</code>
         * [.rows](#module_vuetify-google-autocomplete.props.rows) : <code>Number</code> \| <code>String</code>
         * [.rules](#module_vuetify-google-autocomplete.props.rules) : <code>Array</code>
+        * [.shaped](#module_vuetify-google-autocomplete.props.shaped) : <code>Array</code>
         * [.single-line](#module_vuetify-google-autocomplete.props.single-line) : <code>Boolean</code>
         * [.solo](#module_vuetify-google-autocomplete.props.solo) : <code>Boolean</code>
         * [.solo-inverted](#module_vuetify-google-autocomplete.props.solo-inverted) : <code>Boolean</code>
         * [.spellcheck](#module_vuetify-google-autocomplete.props.spellcheck) : <code>String</code>
         * [.suffix](#module_vuetify-google-autocomplete.props.suffix) : <code>String</code>
+        * [.success](#module_vuetify-google-autocomplete.props.success) : <code>String</code>
+        * [.success-messages](#module_vuetify-google-autocomplete.props.success-messages) : <code>String</code>
         * [.tabindex](#module_vuetify-google-autocomplete.props.tabindex) : <code>\*</code>
         * [.textarea](#module_vuetify-google-autocomplete.props.textarea) : <code>Boolean</code>
         * [.toggle-keys](#module_vuetify-google-autocomplete.props.toggle-keys) : <code>Array</code>
@@ -92,21 +98,23 @@ Exposed component props.
 * [.props](#module_vuetify-google-autocomplete.props)
     * [.addressComponents](#module_vuetify-google-autocomplete.props.addressComponents)
     * [.append-icon](#module_vuetify-google-autocomplete.props.append-icon) : <code>String</code>
-    * [.append-icon-cb](#module_vuetify-google-autocomplete.props.append-icon-cb) : <code>function</code>
-    * [.auto-grow](#module_vuetify-google-autocomplete.props.auto-grow) : <code>Boolean</code>
+    * [.append-outer-icon](#module_vuetify-google-autocomplete.props.append-outer-icon) : <code>Boolean</code>
     * [.autofocus](#module_vuetify-google-autocomplete.props.autofocus) : <code>Boolean</code>
-    * [.box](#module_vuetify-google-autocomplete.props.box) : <code>Boolean</code>
+    * [.background-color](#module_vuetify-google-autocomplete.props.background-color) : <code>Boolean</code>
     * [.browserAutocomplete](#module_vuetify-google-autocomplete.props.browserAutocomplete) : <code>String</code>
+    * [.clear-icon](#module_vuetify-google-autocomplete.props.clear-icon) : <code>Boolean</code>
     * [.clearable](#module_vuetify-google-autocomplete.props.clearable) : <code>Boolean</code>
     * [.color](#module_vuetify-google-autocomplete.props.color) : <code>String</code>
     * [.counter](#module_vuetify-google-autocomplete.props.counter) : <code>Boolean</code> \| <code>Number</code> \| <code>String</code>
     * [.country](#module_vuetify-google-autocomplete.props.country) : <code>String</code> \| <code>Array</code>
     * [.dark](#module_vuetify-google-autocomplete.props.dark) : <code>Boolean</code>
+    * [.dense](#module_vuetify-google-autocomplete.props.dense) : <code>Boolean</code>
     * [.disabled](#module_vuetify-google-autocomplete.props.disabled) : <code>Boolean</code>
-    * [.dont-fill-mask-blanks](#module_vuetify-google-autocomplete.props.dont-fill-mask-blanks) : <code>Boolean</code>
     * [.enable-geolocation](#module_vuetify-google-autocomplete.props.enable-geolocation) : <code>Boolean</code>
     * [.error](#module_vuetify-google-autocomplete.props.error) : <code>Boolean</code>
+    * [.error-count](#module_vuetify-google-autocomplete.props.error-count) : <code>Boolean</code>
     * [.error-messages](#module_vuetify-google-autocomplete.props.error-messages) : <code>Array</code>
+    * [.filled](#module_vuetify-google-autocomplete.props.filled) : <code>Array</code>
     * [.fields](#module_vuetify-google-autocomplete.props.fields) : <code>String</code> \| <code>Array</code>
     * [.flat](#module_vuetify-google-autocomplete.props.flat) : <code>Boolean</code>
     * [.full-width](#module_vuetify-google-autocomplete.props.full-width) : <code>Boolean</code>
@@ -115,29 +123,33 @@ Exposed component props.
     * [.id](#module_vuetify-google-autocomplete.props.id) : <code>String</code>
     * [.label](#module_vuetify-google-autocomplete.props.label) : <code>String</code>
     * [.light](#module_vuetify-google-autocomplete.props.light) : <code>Boolean</code>
+    * [.loader-height](#module_vuetify-google-autocomplete.props.loader-height) : <code>Boolean</code> \| <code>String</code>
+    * [.loading](#module_vuetify-google-autocomplete.props.loading) : <code>Boolean</code> \| <code>String</code>
     * [.loading](#module_vuetify-google-autocomplete.props.loading) : <code>Boolean</code> \| <code>String</code>
     * [.mask](#module_vuetify-google-autocomplete.props.mask) : <code>Object</code> \| <code>String</code>
-    * [.multi-line](#module_vuetify-google-autocomplete.props.multi-line) : <code>Boolean</code>
     * [.no-resize](#module_vuetify-google-autocomplete.props.no-resize) : <code>Boolean</code>
-    * [.outline](#module_vuetify-google-autocomplete.props.outline) : <code>Boolean</code>
+    * [.outlined](#module_vuetify-google-autocomplete.props.outlined) : <code>Boolean</code>
     * [.persistent-hint](#module_vuetify-google-autocomplete.props.persistent-hint) : <code>Boolean</code>
     * [.placeholder](#module_vuetify-google-autocomplete.props.placeholder) : <code>String</code>
     * [.placeName](#module_vuetify-google-autocomplete.props.placeName) : <code>Boolean</code>
     * [.prefix](#module_vuetify-google-autocomplete.props.prefix) : <code>String</code>
     * [.prepend-icon](#module_vuetify-google-autocomplete.props.prepend-icon) : <code>String</code>
-    * [.prepend-icon-cb](#module_vuetify-google-autocomplete.props.prepend-icon-cb) : <code>function</code>
+    * [.prepend-inner-icon](#module_vuetify-google-autocomplete.props.prepend-inner-icon) : <code>String</code>
     * [.readonly](#module_vuetify-google-autocomplete.props.readonly) : <code>Boolean</code>
     * [.required](#module_vuetify-google-autocomplete.props.required) : <code>Boolean</code>
     * [.return-masked-value](#module_vuetify-google-autocomplete.props.return-masked-value) : <code>Boolean</code>
     * [.reverse](#module_vuetify-google-autocomplete.props.reverse) : <code>Boolean</code>
-    * [.row-height](#module_vuetify-google-autocomplete.props.row-height) : <code>Number</code> \| <code>String</code>
+    * [.rounded](#module_vuetify-google-autocomplete.props.rounded) : <code>Boolean</code>
     * [.rows](#module_vuetify-google-autocomplete.props.rows) : <code>Number</code> \| <code>String</code>
     * [.rules](#module_vuetify-google-autocomplete.props.rules) : <code>Array</code>
+    * [.shaped](#module_vuetify-google-autocomplete.props.shaped) : <code>Array</code>
     * [.single-line](#module_vuetify-google-autocomplete.props.single-line) : <code>Boolean</code>
     * [.solo](#module_vuetify-google-autocomplete.props.solo) : <code>Boolean</code>
     * [.solo-inverted](#module_vuetify-google-autocomplete.props.solo-inverted) : <code>Boolean</code>
     * [.spellcheck](#module_vuetify-google-autocomplete.props.spellcheck) : <code>String</code>
     * [.suffix](#module_vuetify-google-autocomplete.props.suffix) : <code>String</code>
+    * [.success](#module_vuetify-google-autocomplete.props.success) : <code>String</code>
+    * [.success-messages](#module_vuetify-google-autocomplete.props.success-messages) : <code>String</code>
     * [.tabindex](#module_vuetify-google-autocomplete.props.tabindex) : <code>\*</code>
     * [.textarea](#module_vuetify-google-autocomplete.props.textarea) : <code>Boolean</code>
     * [.toggle-keys](#module_vuetify-google-autocomplete.props.toggle-keys) : <code>Array</code>
@@ -160,17 +172,10 @@ Maps to Vuetify 'append-icon' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.append-icon-cb"></a>
+<a name="module_vuetify-google-autocomplete.props.append-outer-icon"></a>
 
-#### props.append-icon-cb : <code>function</code>
-Maps to Vuetify 'append-icon-cb' prop.
-
-**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
-**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.auto-grow"></a>
-
-#### props.auto-grow : <code>Boolean</code>
-Maps to Vuetify 'auto-grow' prop.
+#### props.append-outer-icon : <code>Boolean</code>
+Maps to Vuetify 'append-outer-icon' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -181,10 +186,10 @@ Maps to Vuetify 'autofocus' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.box"></a>
+<a name="module_vuetify-google-autocomplete.props.background-color"></a>
 
-#### props.box : <code>Boolean</code>
-Maps to Vuetify 'box' prop.
+#### props.background-color : <code>Boolean</code>
+Maps to Vuetify 'background-color' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -195,6 +200,13 @@ Maps to Vuetify 'browser-autocomplete' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **Default**: <code>&#x27;off&#x27;</code>  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.clear-icon"></a>
+
+#### props.clear-icon : <code>Boolean</code>
+Maps to Vuetify 'clear-icon' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
 <a name="module_vuetify-google-autocomplete.props.clearable"></a>
 
@@ -231,17 +243,17 @@ Maps to Vuetify 'dark' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.dense"></a>
+
+#### props.dense : <code>Boolean</code>
+Maps to Vuetify 'dense' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
 <a name="module_vuetify-google-autocomplete.props.disabled"></a>
 
 #### props.disabled : <code>Boolean</code>
 Maps to Vuetify 'disabled' prop.
-
-**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
-**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.dont-fill-mask-blanks"></a>
-
-#### props.dont-fill-mask-blanks : <code>Boolean</code>
-Maps to Vuetify 'dont-fill-mask-blanks' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -259,10 +271,24 @@ Maps to Vuetify 'error' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.error-count"></a>
+
+#### props.error-count : <code>Boolean</code>
+Maps to Vuetify 'error-count' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
 <a name="module_vuetify-google-autocomplete.props.error-messages"></a>
 
 #### props.error-messages : <code>Array</code>
 Maps to Vuetify 'error-messages' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.filled"></a>
+
+#### props.filled : <code>Array</code>
+Maps to Vuetify 'filled' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -322,6 +348,20 @@ Maps to Vuetify 'light' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.loader-height"></a>
+
+#### props.loader-height : <code>Boolean</code> \| <code>String</code>
+Maps to Vuetify 'loader-height' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.loading"></a>
+
+#### props.loading : <code>Boolean</code> \| <code>String</code>
+Maps to Vuetify 'loading' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
 <a name="module_vuetify-google-autocomplete.props.loading"></a>
 
 #### props.loading : <code>Boolean</code> \| <code>String</code>
@@ -336,13 +376,6 @@ Maps to Vuetify 'mask' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.multi-line"></a>
-
-#### props.multi-line : <code>Boolean</code>
-Maps to Vuetify 'multi-line' prop.
-
-**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
-**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
 <a name="module_vuetify-google-autocomplete.props.no-resize"></a>
 
 #### props.no-resize : <code>Boolean</code>
@@ -350,10 +383,10 @@ Maps to Vuetify 'no-resize' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.outline"></a>
+<a name="module_vuetify-google-autocomplete.props.outlined"></a>
 
-#### props.outline : <code>Boolean</code>
-Maps to Vuetify 'outline' prop.
+#### props.outlined : <code>Boolean</code>
+Maps to Vuetify 'outlined' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -392,10 +425,10 @@ Maps to Vuetify 'prepend-icon' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.prepend-icon-cb"></a>
+<a name="module_vuetify-google-autocomplete.props.prepend-inner-icon"></a>
 
-#### props.prepend-icon-cb : <code>function</code>
-Maps to Vuetify 'prepend-icon-cb' prop.
+#### props.prepend-inner-icon : <code>String</code>
+Maps to Vuetify 'prepend-inner-icon' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -427,10 +460,10 @@ Maps to Vuetify 'reverse' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
-<a name="module_vuetify-google-autocomplete.props.row-height"></a>
+<a name="module_vuetify-google-autocomplete.props.rounded"></a>
 
-#### props.row-height : <code>Number</code> \| <code>String</code>
-Maps to Vuetify 'row-height' prop.
+#### props.rounded : <code>Boolean</code>
+Maps to Vuetify 'rounded' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -445,6 +478,13 @@ Maps to Vuetify 'rows' prop.
 
 #### props.rules : <code>Array</code>
 Maps to Vuetify 'rules' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.shaped"></a>
+
+#### props.shaped : <code>Array</code>
+Maps to Vuetify 'shaped' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
@@ -480,6 +520,20 @@ Maps to native HTML5 spellcheck attribute.
 
 #### props.suffix : <code>String</code>
 Maps to Vuetify 'suffix' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.success"></a>
+
+#### props.success : <code>String</code>
+Maps to Vuetify 'success' prop.
+
+**Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
+**See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
+<a name="module_vuetify-google-autocomplete.props.success-messages"></a>
+
+#### props.success-messages : <code>String</code>
+Maps to Vuetify 'success-messages' prop.
 
 **Kind**: static property of [<code>props</code>](#module_vuetify-google-autocomplete.props)  
 **See**: [https://vuetifyjs.com/en/components/text-fields](https://vuetifyjs.com/en/components/text-fields)  
