@@ -7,7 +7,8 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import App from './App';
 import router from './router';
-import VuetifyGoogleAutocomplete from '../src/vga/index';
+// import VuetifyGoogleAutocomplete from '../src/vga/index';
+import VuetifyGoogleAutocomplete from '../lib/index';
 
 Vue.use(VueClipboards);
 
