@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="blue-grey lighten-3" dark fixed app clipped-right>
+    <v-app-bar color="blue-grey lighten-3" dark clipped-right app>
       <v-toolbar-title>Vuetify Google Autocomplete - Page 1</v-toolbar-title>
       <v-btn @click="navigatePreviousPage()" icon><v-icon>navigate_before</v-icon></v-btn>
       <v-btn @click="navigateNextPage()" icon><v-icon>navigate_next</v-icon></v-btn>
@@ -11,8 +11,8 @@
       <v-btn :href="npmLink" icon>
         <img :src="npmIcon" class="icon icons8-NPM" width="40" height="40">
       </v-btn>
-      <v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>
-    </v-toolbar>
+      <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight"></v-app-bar-nav-icon>
+    </v-app-bar>
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>

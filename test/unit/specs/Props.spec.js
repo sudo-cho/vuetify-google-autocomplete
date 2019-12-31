@@ -18,6 +18,7 @@ describe('Ensure component props behave as expected', () => {
         route: 'long_name',
         locality: 'long_name',
         administrative_area_level_1: 'short_name',
+        administrative_area_level_2: 'short_name',
         country: 'long_name',
         postal_code: 'short_name',
       };
@@ -34,6 +35,7 @@ describe('Ensure component props behave as expected', () => {
         route: 'long_name',
         locality: 'long_name',
         administrative_area_level_1: 'long_name',
+        administrative_area_level_2: 'long_name',
         country: 'long_name',
         postal_code: 'short_name',
       };
@@ -64,42 +66,22 @@ describe('Ensure component props behave as expected', () => {
     });
   });
 
-  describe('append-icon-cb', () => {
-    test('Should have "null" as default if not provided', () => {
+  describe('append-outer-icon', () => {
+    test('Should have "undefined" as default if not provided', () => {
       const wrapper = mount(Vga, {
         localVue,
         propsData: mandatoryProps,
       });
-      expect(wrapper.vm.$props.appendIconCb).toBeNull();
+      expect(wrapper.vm.$props.appendOuterIcon).toBeUndefined();
     });
 
-    test('Should accept function input', () => {
-      const func = () => {};
-      mandatoryProps.appendIconCb = func;
+    test('Should accept string input', () => {
+      mandatoryProps.appendOuterIcon = 'search';
       const wrapper = mount(Vga, {
         localVue,
         propsData: mandatoryProps,
       });
-      expect(wrapper.vm.$props.appendIconCb).toBe(func);
-    });
-  });
-
-  describe('auto-grow', () => {
-    test('Should have false as default if not provided', () => {
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.autoGrow).toBe(false);
-    });
-
-    test('Should accept boolean input', () => {
-      mandatoryProps.autoGrow = true;
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.autoGrow).toBe(true);
+      expect(wrapper.vm.$props.appendOuterIcon).toBe('search');
     });
   });
 
@@ -122,22 +104,22 @@ describe('Ensure component props behave as expected', () => {
     });
   });
 
-  describe('box', () => {
+  describe('background-color', () => {
     test('Should have false as default if not provided', () => {
       const wrapper = mount(Vga, {
         localVue,
         propsData: mandatoryProps,
       });
-      expect(wrapper.vm.$props.box).toBe(false);
+      expect(wrapper.vm.$props.backgroundColor).toBe(undefined);
     });
 
     test('Should accept boolean input', () => {
-      mandatoryProps.box = true;
+      mandatoryProps.backgroundColor = 'pink';
       const wrapper = mount(Vga, {
         localVue,
         propsData: mandatoryProps,
       });
-      expect(wrapper.vm.$props.box).toBe(true);
+      expect(wrapper.vm.$props.backgroundColor).toBe('pink');
     });
   });
 
@@ -166,7 +148,7 @@ describe('Ensure component props behave as expected', () => {
         localVue,
         propsData: mandatoryProps,
       });
-      expect(wrapper.vm.$props.color).toBe('primary');
+      expect(wrapper.vm.$props.color).toBe(undefined);
     });
 
     test('Should accept string input', () => {
@@ -261,25 +243,6 @@ describe('Ensure component props behave as expected', () => {
         propsData: mandatoryProps,
       });
       expect(wrapper.vm.$props.disabled).toBe(true);
-    });
-  });
-
-  describe('dont-fill-mask-blanks', () => {
-    test('Should have "false" as default if not provided', () => {
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.dontFillMaskBlanks).toBe(false);
-    });
-
-    test('Should accept boolean input', () => {
-      mandatoryProps.dontFillMaskBlanks = true;
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.dontFillMaskBlanks).toBe(true);
     });
   });
 
@@ -529,25 +492,6 @@ describe('Ensure component props behave as expected', () => {
     });
   });
 
-  describe('multi-line', () => {
-    test('Should have "false" as default if not provided', () => {
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.multiLine).toBe(false);
-    });
-
-    test('Should accept boolean input', () => {
-      mandatoryProps.multiLine = true;
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.multiLine).toBe(true);
-    });
-  });
-
   describe('no-resize', () => {
     test('Should have "false" as default if not provided', () => {
       const wrapper = mount(Vga, {
@@ -662,26 +606,6 @@ describe('Ensure component props behave as expected', () => {
     });
   });
 
-  describe('prepend-icon-cb', () => {
-    test('Should have "null" as default if not provided', () => {
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.prependIconCb).toBeNull();
-    });
-
-    test('Should accept function input', () => {
-      const func = () => {};
-      mandatoryProps.prependIconCb = func;
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.prependIconCb).toBe(func);
-    });
-  });
-
   describe('readonly', () => {
     test('Should have "false" as default if not provided', () => {
       const wrapper = mount(Vga, {
@@ -736,34 +660,6 @@ describe('Ensure component props behave as expected', () => {
         propsData: mandatoryProps,
       });
       expect(wrapper.vm.$props.returnMaskedValue).toBe(true);
-    });
-  });
-
-  describe('row-height', () => {
-    test('Should have "24" as default if not provided', () => {
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.rowHeight).toBe(24);
-    });
-
-    test('Should accept number input', () => {
-      mandatoryProps.rowHeight = 22;
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.rowHeight).toBe(22);
-    });
-
-    test('Should accept string input', () => {
-      mandatoryProps.rowHeight = '20';
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.rowHeight).toBe('20');
     });
   });
 
