@@ -39,15 +39,15 @@ export default {
       default: undefined,
     },
     /**
-     * Maps to Vuetify 'append-icon-cb' prop.
+     * Maps to Vuetify 'append-outer-icon' prop.
      *
-     * @alias module:vuetify-google-autocomplete.props.append-icon-cb
+     * @alias module:vuetify-google-autocomplete.props.append-outer-icon
      * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Function}
+     * @type {Boolean}
      */
-    appendIconCb: {
-      type: Function,
-      default: null,
+    appendOuterIcon: {
+      type: String,
+      default: undefined,
     },
     /**
      * Maps to native HTML5 autocapitalize attribute.
@@ -72,17 +72,6 @@ export default {
       default: 'off',
     },
     /**
-     * Maps to Vuetify 'auto-grow' prop.
-     *
-     * @alias module:vuetify-google-autocomplete.props.auto-grow
-     * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Boolean}
-     */
-    autoGrow: {
-      type: Boolean,
-      default: false,
-    },
-    /**
      * Maps to Vuetify 'autofocus' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.autofocus
@@ -94,15 +83,15 @@ export default {
       default: false,
     },
     /**
-     * Maps to Vuetify 'box' prop.
+     * Maps to Vuetify 'background-color' prop.
      *
-     * @alias module:vuetify-google-autocomplete.props.box
+     * @alias module:vuetify-google-autocomplete.props.background-color
      * @see {@link https://vuetifyjs.com/en/components/text-fields}
      * @type {Boolean}
      */
-    box: {
-      type: Boolean,
-      default: false,
+    backgroundColor: {
+      type: String,
+      default: undefined,
     },
     /**
      * Maps to Vuetify 'browser-autocomplete' prop.
@@ -115,6 +104,17 @@ export default {
     browserAutocomplete: {
       type: String,
       default: 'off',
+    },
+    /**
+     * Maps to Vuetify 'clear-icon' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.clear-icon
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {Boolean}
+     */
+    clearIcon: {
+      type: String,
+      default: '$clear',
     },
     /**
      * Maps to Vuetify 'clearable' prop.
@@ -136,7 +136,7 @@ export default {
      */
     color: {
       type: String,
-      default: 'primary',
+      default: undefined,
     },
     /**
      * Maps to Vuetify 'counter' prop.
@@ -171,6 +171,17 @@ export default {
       default: false,
     },
     /**
+     * Maps to Vuetify 'dense' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.dense
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {Boolean}
+     */
+    dense: {
+      type: Boolean,
+      default: false,
+    },
+    /**
      * Maps to Vuetify 'disabled' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.disabled
@@ -178,17 +189,6 @@ export default {
      * @type {Boolean}
      */
     disabled: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     * Maps to Vuetify 'dont-fill-mask-blanks' prop.
-     *
-     * @alias module:vuetify-google-autocomplete.props.dont-fill-mask-blanks
-     * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Boolean}
-     */
-    dontFillMaskBlanks: {
       type: Boolean,
       default: false,
     },
@@ -215,6 +215,17 @@ export default {
       default: false,
     },
     /**
+     * Maps to Vuetify 'error-count' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.error-count
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {Boolean}
+     */
+    errorCount: {
+      type: [Number, String],
+      default: 1,
+    },
+    /**
      * Maps to Vuetify 'error-messages' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.error-messages
@@ -224,6 +235,17 @@ export default {
     errorMessages: {
       type: Array,
       default: () => [],
+    },
+    /**
+     * Maps to Vuetify 'filled' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.filled
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {Array}
+     */
+    filled: {
+      type: Boolean,
+      default: false,
     },
     /**
      * Fields to be included for the Place in the details response when the details
@@ -312,6 +334,17 @@ export default {
       default: false,
     },
     /**
+     * Maps to Vuetify 'loader-height' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.loader-height
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {Boolean|String}
+     */
+    loaderHeight: {
+      type: [Number, String],
+      default: 2,
+    },
+    /**
      * Maps to Vuetify 'loading' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.loading
@@ -321,6 +354,17 @@ export default {
     loading: {
       type: [Boolean, String],
       default: false,
+    },
+    /**
+     * Maps to Vuetify 'loading' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.loading
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {Boolean|String}
+     */
+    messages: {
+      type: [String, Array],
+      default: () => [],
     },
     /**
      * Maps to Vuetify 'mask' prop.
@@ -334,17 +378,6 @@ export default {
       default: undefined,
     },
     /**
-     * Maps to Vuetify 'multi-line' prop.
-     *
-     * @alias module:vuetify-google-autocomplete.props.multi-line
-     * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Boolean}
-     */
-    multiLine: {
-      type: Boolean,
-      default: false,
-    },
-    /**
      * Maps to Vuetify 'no-resize' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.no-resize
@@ -356,13 +389,13 @@ export default {
       default: false,
     },
     /**
-     * Maps to Vuetify 'outline' prop.
+     * Maps to Vuetify 'outlined' prop.
      *
-     * @alias module:vuetify-google-autocomplete.props.outline
+     * @alias module:vuetify-google-autocomplete.props.outlined
      * @see {@link https://vuetifyjs.com/en/components/text-fields}
      * @type {Boolean}
      */
-    outline: {
+    outlined: {
       type: Boolean,
       default: false,
     },
@@ -422,15 +455,15 @@ export default {
       default: undefined,
     },
     /**
-     * Maps to Vuetify 'prepend-icon-cb' prop.
+     * Maps to Vuetify 'prepend-inner-icon' prop.
      *
-     * @alias module:vuetify-google-autocomplete.props.prepend-icon-cb
+     * @alias module:vuetify-google-autocomplete.props.prepend-inner-icon
      * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Function}
+     * @type {String}
      */
-    prependIconCb: {
-      type: Function,
-      default: null,
+    prependIconInner: {
+      type: String,
+      default: undefined,
     },
     /**
      * Maps to Vuetify 'readonly' prop.
@@ -477,15 +510,15 @@ export default {
       default: false,
     },
     /**
-     * Maps to Vuetify 'row-height' prop.
+     * Maps to Vuetify 'rounded' prop.
      *
-     * @alias module:vuetify-google-autocomplete.props.row-height
+     * @alias module:vuetify-google-autocomplete.props.rounded
      * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Number|String}
+     * @type {Boolean}
      */
-    rowHeight: {
-      type: [Number, String],
-      default: 24,
+    rounded: {
+      type: Boolean,
+      default: false,
     },
     /**
      * Maps to Vuetify 'rows' prop.
@@ -508,6 +541,17 @@ export default {
     rules: {
       type: Array,
       default: () => [],
+    },
+    /**
+     * Maps to Vuetify 'shaped' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.shaped
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {Array}
+     */
+    shaped: {
+      type: Boolean,
+      default: false,
     },
     /**
      * Maps to Vuetify 'single-line' prop.
@@ -563,6 +607,28 @@ export default {
     suffix: {
       type: String,
       default: undefined,
+    },
+    /**
+     * Maps to Vuetify 'success' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.success
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {String}
+     */
+    success: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Maps to Vuetify 'success-messages' prop.
+     *
+     * @alias module:vuetify-google-autocomplete.props.success-messages
+     * @see {@link https://vuetifyjs.com/en/components/text-fields}
+     * @type {String}
+     */
+    successMessages: {
+      type: [String, Array],
+      default: () => [],
     },
     /**
      * Maps to Vuetify 'tabindex' prop.
@@ -909,46 +975,53 @@ export default {
       },
       props: {
         'append-icon': self.appendIcon,
-        'append-icon-cb': self.appendIconCb,
-        'auto-grow': self.autoGrow,
+        'append-outer-icon': self.appendOuterIcon,
         autofocus: self.autofocus,
-        box: self.box,
+        'background-color': self.backgroundColor,
         'browser-autocomplete': self.browserAutocomplete,
+        'clear-icon': self.clearIcon,
         clearable: self.clearable,
         color: self.color,
         counter: self.counter,
         dark: self.dark,
+        dense: self.dense,
         disabled: self.disabled,
-        'dont-fill-mask-blanks': self.dontFillMaskBlanks,
         error: self.error,
+        'error-count': self.errorCount,
         'error-messages': self.errorMessages,
+        filled: self.filled,
+        flat: self.flat,
         'full-width': self.fullWidth,
         'hide-details': self.hideDetails,
         hint: self.hint,
         label: self.label,
         light: self.light,
+        'loader-height': self.loaderHeight,
         loading: self.loading,
+        messages: self.messages,
         mask: self.mask,
-        'multi-line': self.multiLine,
         'no-resize': self.noResize,
-        outline: self.outline,
+        outlined: self.outlined,
         'persistent-hint': self.persistentHint,
         placeholder: self.placeholder,
         prefix: self.prefix,
         'prepend-icon': self.prependIcon,
-        'prepend-icon-cb': self.prependIconCb,
+        'prepend-inner-icon': self.prependIconInner,
         readonly: self.readonly,
         required: self.required,
         'return-masked-value': self.returnMaskedValue,
         reverse: self.reverse,
-        'row-height': self.rowHeight,
+        rounded: self.rounded,
         rows: self.rows,
         rules: self.rules,
         ref: 'autocomplete',
+        shaped: self.shaped,
         'single-line': self.singleLine,
         solo: self.solo,
         'solo-inverted': self.soloInverted,
         suffix: self.suffix,
+        success: self.success,
+        'success-messages': self.successMessages,
         tabindex: self.tabindex,
         textarea: self.textarea,
         'toggle-keys': self.toggleKeys,

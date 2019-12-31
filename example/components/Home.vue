@@ -6,12 +6,27 @@
         <v-card-text>
           <v-text-field label="id" v-model="id"></v-text-field>
           <v-text-field label="append-icon" v-model="appendIcon"></v-text-field>
+          <v-text-field label="append-outer-icon" v-model="appendOuterIcon"></v-text-field>
+
+          <v-text-field label="background-color" v-model="backgroundColor"></v-text-field>
+          <v-text-field label="clear-icon" v-model="clearIcon"></v-text-field>
+          <v-text-field label="color" v-model="color"></v-text-field>
+          <v-text-field label="counter" v-model="counter"></v-text-field>
           <v-text-field label="prepend-icon" v-model="prependIcon"></v-text-field>
           <v-text-field label="classname" v-model="classname"></v-text-field>
           <v-text-field label="Label Text" v-model="labelText"></v-text-field>
           <v-text-field label="Placeholder Text" v-model="placeholderText"></v-text-field>
+
+          <v-switch label="autofocus" v-model="autofocus"></v-switch>
           <v-switch label="Clearable" v-model="clearable" color="secondary" hide-details></v-switch>
+          <v-switch label="Dark" v-model="dark" color="secondary" hide-details></v-switch>
+          <v-switch label="Dense" v-model="dense" color="secondary" hide-details></v-switch>
+          <v-switch label="Error" v-model="error" color="secondary" hide-details></v-switch>
           <v-switch label="Disabled" v-model="disabled" color="secondary" hide-details></v-switch>
+          <v-switch label="Filled" v-model="filled" color="secondary" hide-details></v-switch>
+          <v-switch label="Flat" v-model="flat" color="secondary" hide-details></v-switch>
+          <v-switch label="Outlined" v-model="outlined" color="secondary" hide-details></v-switch>
+          <v-switch label="Reverse" v-model="reverse" color="secondary" hide-details></v-switch>
           <v-switch
             label="Enable Geolocation"
             v-model="enableGeolocation"
@@ -69,21 +84,34 @@
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card>
+            <v-card :dark="dark">
               <v-card-text>
                 <vuetify-google-autocomplete
                   :id="id"
                   :append-icon="appendIcon"
+                  :append-outer-icon="appendOuterIcon"
+                  :autofocus="autofocus"
+                  :backgroundColor="backgroundColor"
+                  :clearIcon="clearIcon"
+                  :color="color"
+                  :counter="counter"
                   :classname="classname"
                   :clearable="clearable"
                   :country="country"
+                  :dark="dark"
+                  :dense="dense"
+                  :error="error"
                   :disabled="disabled"
                   :enable-geolocation="enableGeolocation"
+                  :filled="filled"
+                  :flat="flat"
                   :label="labelText"
+                  :outlined="outlined"
                   :placeholder="placeholderText"
                   :placeName="placeName"
                   :prepend-icon="prependIcon"
                   :required="required"
+                  :reverse="reverse"
                   :types="types"
                   v-on:placechanged="getAddressData"
                   v-on:no-results-found="noResultsFound"
@@ -197,19 +225,32 @@ export default {
     },
     address: {},
     appendIcon: 'search',
+    appendOuterIcon: 'search',
+    autofocus: false,
+    clearIcon: '',
+    color: '',
+    counter: '',
+    backgroundColor: '',
     callbackFunction: 'getAddressData',
     classname: '',
     clearable: true,
     country: [],
     countryOptions: countryCodeList,
+    dark: false,
+    dense: false,
+    error: false,
     disabled: false,
     enableGeolocation: false,
+    filled: false,
+    flat: false,
     id: 'map',
     prependIcon: '',
     labelText: 'Search Address',
+    outlined: false,
     placeholderText: '',
     placeName: false,
     required: true,
+    reverse: false,
     types: 'address',
     typesOptions: [
       'geocode',
@@ -241,16 +282,29 @@ export default {
       return `<vuetify-google-autocomplete
   :id="${this.id}"
   :append-icon="${this.appendIcon}"
+  :append-outer-icon="${this.appendOuterIcon}"
+  :autofocus="${this.autofocus}"
+  :clearIcon="${this.clearIcon}"
+  :color="${this.color}"
+  :counter="${this.counter}"
+  :backgroundColor="${this.backgroundColor}"
   :clearable="${this.clearable}"
   :classname="${this.classname}"
   :country="[${this.country}]"
+  :dark="${this.dark}"
+  :dense="${this.dense}"
   :disabled="${this.disabled}"
+  :error="${this.error}"
   :enable-geolocation="${this.enableGeolocation}"
+  :filled="${this.filled}"
+  :flat="${this.flat}"
   :label="${this.labelText}"
+  :outlined="${this.outlined}"
   :placeholder="${this.placeholderText}"
   :placeName="${this.placeName}"
   :prepend-icon="${this.prependIcon}"
   :required="${this.required}"
+  :reverse="${this.reverse}"
   :types="['${this.types}']"
   v-on:placechanged="${this.callbackFunction}">
 </vuetify-google-autocomplete>`;
@@ -261,17 +315,29 @@ export default {
   return {
     address: ${JSON.stringify(this.address)},
     appendIcon: '${this.appendIcon}',
+    appendOuterIcon: '${this.appendOuterIcon}',
+    autofocus: '${this.autofocus}',
+    color: '${this.color}',
+    counter: '${this.counter}',
+    backgroundColor: '${this.backgroundColor}',
     classname: '${this.classname}',
     clearable: '${this.clearable}',
     country: [${this.country}],
+    dark: ${this.dark},
+    dense: ${this.dense},
     disabled: ${this.disabled},
     enableGeolocation: ${this.enableGeolocation},
+    error: ${this.error},
+    filled: ${this.filled},
+    flat: ${this.flat},
     id: '${this.id}',
     labelText: '${this.labelText}',
+    outlined: '${this.outlined}',
     prependIcon: '${this.prependIcon}',
     placeholderText: '${this.placeholderText}',
     placeName: ${this.placeName},
     required: '${this.required}',
+    reverse: '${this.reverse}',
     types: ['${this.types}'],
 
   }
