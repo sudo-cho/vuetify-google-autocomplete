@@ -6,15 +6,36 @@
         <v-card-text>
           <v-text-field label="id" v-model="id"></v-text-field>
           <v-text-field label="append-icon" v-model="appendIcon"></v-text-field>
+          <v-text-field label="append-outer-icon" v-model="appendOuterIcon"></v-text-field>
+
+          <v-text-field label="background-color" v-model="backgroundColor"></v-text-field>
+          <v-text-field label="clear-icon" v-model="clearIcon"></v-text-field>
+          <v-text-field label="color" v-model="color"></v-text-field>
+          <v-text-field label="counter" v-model="counter"></v-text-field>
           <v-text-field label="prepend-icon" v-model="prependIcon"></v-text-field>
           <v-text-field label="classname" v-model="classname"></v-text-field>
           <v-text-field label="Label Text" v-model="labelText"></v-text-field>
           <v-text-field label="Placeholder Text" v-model="placeholderText"></v-text-field>
+
+          <v-switch label="autofocus" v-model="autofocus"></v-switch>
           <v-switch label="Clearable" v-model="clearable" color="secondary" hide-details></v-switch>
+          <v-switch label="Dark" v-model="dark" color="secondary" hide-details></v-switch>
+          <v-switch label="Dense" v-model="dense" color="secondary" hide-details></v-switch>
+          <v-switch label="Error" v-model="error" color="secondary" hide-details></v-switch>
           <v-switch label="Disabled" v-model="disabled" color="secondary" hide-details></v-switch>
+          <v-switch label="Filled" v-model="filled" color="secondary" hide-details></v-switch>
+          <v-switch label="Flat" v-model="flat" color="secondary" hide-details></v-switch>
+          <v-switch label="Outlined" v-model="outlined" color="secondary" hide-details></v-switch>
+          <v-switch label="Reverse" v-model="reverse" color="secondary" hide-details></v-switch>
           <v-switch
             label="Enable Geolocation"
             v-model="enableGeolocation"
+            color="secondary"
+            hide-details
+          ></v-switch>
+          <v-switch
+            label="Use place name"
+            v-model="placeName"
             color="secondary"
             hide-details
           ></v-switch>
@@ -46,7 +67,7 @@
         </v-card-text>
       </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="blue-grey lighten-3" dark fixed app clipped-right>
+    <v-app-bar color="blue-grey lighten-3" dark clipped-right app>
       <v-toolbar-title>Vuetify Google Autocomplete - Page 3</v-toolbar-title>
       <v-btn @click="navigatePreviousPage()" icon><v-icon>navigate_before</v-icon></v-btn>
       <v-btn @click="navigateNextPage()" icon><v-icon>navigate_next</v-icon></v-btn>
@@ -57,26 +78,40 @@
       <v-btn :href="npmLink" icon>
         <img :src="npmIcon" class="icon icons8-NPM" width="40" height="40">
       </v-btn>
-      <v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>
-    </v-toolbar>
+      <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight"></v-app-bar-nav-icon>
+    </v-app-bar>
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card>
+            <v-card :dark="dark">
               <v-card-text>
                 <vuetify-google-autocomplete
                   :id="id"
                   :append-icon="appendIcon"
+                  :append-outer-icon="appendOuterIcon"
+                  :autofocus="autofocus"
+                  :backgroundColor="backgroundColor"
+                  :clearIcon="clearIcon"
+                  :color="color"
+                  :counter="counter"
                   :classname="classname"
                   :clearable="clearable"
                   :country="country"
+                  :dark="dark"
+                  :dense="dense"
+                  :error="error"
                   :disabled="disabled"
                   :enable-geolocation="enableGeolocation"
+                  :filled="filled"
+                  :flat="flat"
                   :label="labelText"
+                  :outlined="outlined"
                   :placeholder="placeholderText"
+                  :placeName="placeName"
                   :prepend-icon="prependIcon"
                   :required="required"
+                  :reverse="reverse"
                   :types="types"
                   v-on:placechanged="getAddressData"
                   v-on:no-results-found="noResultsFound"
@@ -100,15 +135,18 @@
                 >Generated HTML</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-tooltip top>
-                  <v-btn slot="activator"
+                  <template v-slot:activator="{ on }">
+                    <v-btn slot="activator"
                     v-clipboard="outputHtml"
                     @success="handleCodeCopySuccess('HTML')"
                     @error="handleCodeCopyError('HTML')"
                     icon
-                  >
-                  <v-icon>content_copy</v-icon>
-                  </v-btn>
-                  <span>Copy HTML</span>
+                    >
+                    <v-icon>content_copy</v-icon>
+                    </v-btn>
+                    <span>Copy HTML</span>
+                  </template>
+                  <span>Left tooltip</span>
                 </v-tooltip>
               </v-toolbar>
               <v-container>
@@ -122,16 +160,18 @@
                 <v-toolbar-title class="body-2" style="color: white;">Generated JS</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-tooltip top>
-                  <v-btn
-                    slot="activator"
-                    v-clipboard="outputJs"
-                    @success="handleCodeCopySuccess('JS')"
-                    @error="handleCodeCopyError('JS')"
-                    icon
-                  >
-                  <v-icon>content_copy</v-icon>
-                  </v-btn>
-                  <span>Copy JS</span>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      slot="activator"
+                      v-clipboard="outputJs"
+                      @success="handleCodeCopySuccess('JS')"
+                      @error="handleCodeCopyError('JS')"
+                      icon
+                    >
+                    <v-icon>content_copy</v-icon>
+                    </v-btn>
+                    <span>Copy JS</span>
+                  </template>
                 </v-tooltip>
               </v-toolbar>
               <v-container>
@@ -152,7 +192,7 @@
         :primary="snackbar.context === 'primary'"
         :secondary="snackbar.context === 'secondary'"
         v-model="snackbar.visible"
-        >{{ snackbar.text }}<v-btn dark flat @click.native="snackbar.visible = false">Close</v-btn>
+        >{{ snackbar.text }}<v-btn dark text @click.native="snackbar.visible = false">Close</v-btn>
       </v-snackbar>
     </v-content>
     <v-footer color="blue-grey lighten-3" class="white--text" app>
@@ -185,18 +225,32 @@ export default {
     },
     address: {},
     appendIcon: 'search',
+    appendOuterIcon: 'search',
+    autofocus: false,
+    clearIcon: '',
+    color: '',
+    counter: '',
+    backgroundColor: '',
     callbackFunction: 'getAddressData',
     classname: '',
     clearable: true,
     country: [],
     countryOptions: countryCodeList,
+    dark: false,
+    dense: false,
+    error: false,
     disabled: false,
     enableGeolocation: false,
+    filled: false,
+    flat: false,
     id: 'map',
     prependIcon: '',
     labelText: 'Search Address',
+    outlined: false,
     placeholderText: '',
+    placeName: false,
     required: true,
+    reverse: false,
     types: 'address',
     typesOptions: [
       'geocode',
@@ -228,15 +282,29 @@ export default {
       return `<vuetify-google-autocomplete
   :id="${this.id}"
   :append-icon="${this.appendIcon}"
+  :append-outer-icon="${this.appendOuterIcon}"
+  :autofocus="${this.autofocus}"
+  :clearIcon="${this.clearIcon}"
+  :color="${this.color}"
+  :counter="${this.counter}"
+  :backgroundColor="${this.backgroundColor}"
   :clearable="${this.clearable}"
   :classname="${this.classname}"
   :country="[${this.country}]"
+  :dark="${this.dark}"
+  :dense="${this.dense}"
   :disabled="${this.disabled}"
+  :error="${this.error}"
   :enable-geolocation="${this.enableGeolocation}"
+  :filled="${this.filled}"
+  :flat="${this.flat}"
   :label="${this.labelText}"
+  :outlined="${this.outlined}"
   :placeholder="${this.placeholderText}"
+  :placeName="${this.placeName}"
   :prepend-icon="${this.prependIcon}"
   :required="${this.required}"
+  :reverse="${this.reverse}"
   :types="['${this.types}']"
   v-on:placechanged="${this.callbackFunction}">
 </vuetify-google-autocomplete>`;
@@ -247,16 +315,29 @@ export default {
   return {
     address: ${JSON.stringify(this.address)},
     appendIcon: '${this.appendIcon}',
+    appendOuterIcon: '${this.appendOuterIcon}',
+    autofocus: '${this.autofocus}',
+    color: '${this.color}',
+    counter: '${this.counter}',
+    backgroundColor: '${this.backgroundColor}',
     classname: '${this.classname}',
     clearable: '${this.clearable}',
     country: [${this.country}],
+    dark: ${this.dark},
+    dense: ${this.dense},
     disabled: ${this.disabled},
     enableGeolocation: ${this.enableGeolocation},
+    error: ${this.error},
+    filled: ${this.filled},
+    flat: ${this.flat},
     id: '${this.id}',
     labelText: '${this.labelText}',
+    outlined: '${this.outlined}',
     prependIcon: '${this.prependIcon}',
     placeholderText: '${this.placeholderText}',
+    placeName: ${this.placeName},
     required: '${this.required}',
+    reverse: '${this.reverse}',
     types: ['${this.types}'],
 
   }
