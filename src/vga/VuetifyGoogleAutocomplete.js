@@ -779,6 +779,54 @@ export default {
     },
 
     /**
+     * Called when appended icon is clicked
+     * @access private
+     */
+    onClickAppend() {
+      this.$emit('click:append');
+    },
+
+    /**
+     * Called when appended outer icon is clicked
+     * @access private
+     */
+    onClickAppendOuter() {
+      this.$emit('click:append-outer');
+    },
+
+    /**
+     * Called when clearable icon clicked
+     * @access private
+     */
+    onClickClear() {
+      this.$emit('click:clear');
+    },
+
+    /**
+     * Called when prepended icon is clicked
+     * @access private
+     */
+    onClickPrepend() {
+      this.$emit('click:prepend');
+    },
+
+    /**
+     * Called when prepended inner icon is clicked
+     * @access private
+     */
+    onClickPrependInner() {
+      this.$emit('click:prepend-inner');
+    },
+
+    /**
+     * The error.sync event
+     * @access private
+     */
+    onUpdateError() {
+      this.$emit('update:error');
+    },
+
+    /**
      * Called when a key gets pressed
      * @param {Event} event A keypress event
      * @access private
@@ -1032,6 +1080,12 @@ export default {
         '@focus': self.onFocus(),
         '@blur': self.onFocus(),
         '@change': self.onChange(),
+        '@click:append': self.onClickAppend(),
+        '@click:append-outer': self.onClickAppendOuter(),
+        '@click:clear': self.onClickClear(),
+        '@click:prepend': self.onClickPrependInner(),
+        '@click:prepend-inner': self.onClickPrependInner(),
+        '@update:error': self.onUpdateError(),
         '@keypress': self.onKeyPress(),
       },
       domProps: {
@@ -1046,6 +1100,24 @@ export default {
         },
         change: () => {
           self.onChange();
+        },
+        'click:append': () => {
+          self.onClickAppend();
+        },
+        'click:append-outer': () => {
+          self.onClickAppendOuter();
+        },
+        'click:clear': () => {
+          self.onClickClear();
+        },
+        'click:prepend': () => {
+          self.onClickPrepend();
+        },
+        'click:prepend-inner': () => {
+          self.onClickPrependInner();
+        },
+        'update:error': () => {
+          self.onUpdateError();
         },
         keypress: (e) => {
           self.onKeyPress(e.target.value);

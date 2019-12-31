@@ -6,9 +6,9 @@ A Vuetify ready Vue.js (2.x) autosuggest component for the Google Maps Places AP
 
 ## Versions
 
-Latest Stable: 1.1.0
+Latest Beta: 2.0.0-beta.8
 
-Latest Dev Stable: 2.0.0-beta.8
+Latest Stable: 2.0.0
 
 See [releases](https://github.com/MadimetjaShika/vuetify-google-autocomplete/releases) for details.
 
@@ -110,12 +110,13 @@ In your template you can use this syntax:
 
 ### Properties
 
-**Please refer to the [Props API](https://madimetjashika.github.io/vuetify-google-autocomplete/docs/module-vuetify-google-autocomplete.props.html) or [JSDOCS.md file](https://github.com/MadimetjaShika/vuetify-google-autocomplete/blob/dev/JSDOCS.md) for a complete "living" definition of all props supported by this library.**
+**Please refer to the following for a list of all the properties supported by this library:**
 
-> NB: This componenent implements the same props as those specified for [Vuetify Text Fields](https://vuetifyjs.com/components/text-fields) as at v1.0.3. Please see [Vuetify Text Fields](https://vuetifyjs.com/components/text-fields) for a complete list of available props.
+*  [Vuetify text fields](https://vuetifyjs.com/en/components/text-fields), for all vuetify props supported.
+*  [Props API Docs](https://madimetjashika.github.io/vuetify-google-autocomplete/docs/module-vuetify-google-autocomplete.props.html) or [JSDOCS.md file](https://github.com/MadimetjaShika/vuetify-google-autocomplete/blob/dev/JSDOCS.md), for living code documentation on props defined in this library.
 
 ### Events
-The component emits next events, which you can listen in your application:
+The component emits the following events, which you can listen in your application:
 
 #### placechanged
 Gets triggered when the address data got obtained. This data is available on the returned objects:
@@ -125,20 +126,7 @@ Gets triggered when the address data got obtained. This data is available on the
 #### no-results-found
 Gets triggered when a user entered the name of a Place that was not suggested and pressed the Enter key, or the Place Details request failed.
 
-#### focus
-Gets triggered when the autocomplete input field receives focus.
-
-#### blur
-Gets triggered when the autocomplete input field loses focus.
-
-#### inputChange
-Gets triggered every time autocomplete input got changed
-
-#### change
-Gets triggered when the autocomplete results got changed
-
-#### keypress
-Gets triggered when a key gets pressed
+Pleae refer to [Vuetify text field events](https://vuetifyjs.com/en/components/text-fields) for all vuetify supported events.
 
 ### Exposed component functions
 
@@ -163,7 +151,7 @@ Call to update the user input with a new value
 
 ### Example
 
-Please note that you need to provide what method will listen (`v-on:placechanged`) to an event when the address data is obtained.
+Please note that you need to provide the method that will listen (`v-on:placechanged`) to for an event when the address data is obtained. In the example below, the method is ``getAddressData``.
 
 ```html
 <template>
