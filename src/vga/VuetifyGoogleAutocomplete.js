@@ -544,6 +544,15 @@ export default {
       default: () => [],
     },
     /**
+     * Requires an address selection if the user changes the text.
+     *
+     * @type {Boolean}
+     */
+    selectionRequired: {
+      type: Boolean,
+      default: false,
+    },
+    /**
      * Maps to Vuetify 'shaped' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.shaped
@@ -747,7 +756,29 @@ export default {
      * @access private
      */
     vgaMapState: null,
+
+    /**
+     * The address of the last place the user selected.
+     * @access private
+     * @type {String}
+     */
+    lastSelectedPlace: '',
   }),
+  computed: {
+    rulesPlusInternalRules() {
+      const enforceSelectionRequired = () => {
+        if (this.selectionRequired) {
+          if (this.lastSelectedPlace.trim() === '' || this.lastSelectedPlace !== this.autocompleteText) {
+            return 'Please select an address from the list.';
+          }
+        }
+
+        return true;
+      };
+
+      return [...this.rules, enforceSelectionRequired];
+    },
+  },
   /**
    * @mixin
    * @desc See code for members.
@@ -938,9 +969,9 @@ export default {
         const returnData = {};
 
         if (place.name !== undefined && this.placeName) {
-          document.getElementById(this.id).value = place.name;
+          this.autocompleteText = place.name;
         } else if (place.formatted_address !== undefined) {
-          document.getElementById(this.id).value = place.formatted_address;
+          this.autocompleteText = place.formatted_address;
         }
 
         if (place.address_components !== undefined) {
@@ -973,8 +1004,15 @@ export default {
           this.$emit('placechanged', returnData, place, this.id);
 
           // update autocompleteText then emit change event
-          this.autocompleteText = document.getElementById(this.id).value;
+          this.lastSelectedPlace = this.autocompleteText;
           this.onChange();
+          if (this.validateOnBlur) {
+            // manually validate the underlying v-text-field because
+            // selecting an option causes the field to lose focus
+            // before the place_changed event is emitted and we have
+            // a chance to fill the field with the formatted address
+            this.$refs.textField.validate();
+          }
         }
       });
     },
@@ -985,6 +1023,7 @@ export default {
    */
   created() {
     this.autocompleteText = this.value ? this.value : '';
+    this.lastSelectedPlace = this.autocompleteText;
   },
   /**
    * @mixin
@@ -1062,7 +1101,7 @@ export default {
         reverse: self.reverse,
         rounded: self.rounded,
         rows: self.rows,
-        rules: self.rules,
+        rules: self.rulesPlusInternalRules,
         ref: 'autocomplete',
         shaped: self.shaped,
         'single-line': self.singleLine,
@@ -1075,7 +1114,7 @@ export default {
         textarea: self.textarea,
         'toggle-keys': self.toggleKeys,
         type: self.type,
-        value: self.value || self.autocompleteText,
+        value: self.autocompleteText,
         'validate-on-blur': self.validateOnBlur,
         '@focus': self.onFocus(),
         '@blur': self.onFocus(),
@@ -1122,15 +1161,9 @@ export default {
         keypress: (e) => {
           self.onKeyPress(e.target.value);
         },
-        input: (event) => {
-          if (event && event.target) {
-            self.value = event.target.value;
-            self.$emit('input', event.target.value);
-          } else if (!event) {
-            // clear was pressed, reset this
-            self.autocompleteText = '';
-            self.$emit('placechanged', null);
-          }
+        input: (value) => {
+          // NOTE: value is not an event v-text-field raises this with the actual value
+          this.autocompleteText = value;
         },
       },
     }, []);
@@ -1146,6 +1179,15 @@ export default {
       this.$emit('input', newVal || '');
     },
 
+    /**
+     * Keep autocompleteText up-to-date with v-model.
+     */
+    value: function value(newVal) {
+      if (newVal !== this.autocompleteText) {
+        this.autocompleteText = newVal;
+        this.lastSelectedPlace = newVal;
+      }
+    },
     /**
      * Update the SDK country option whenever it changes from the parent.
      */
