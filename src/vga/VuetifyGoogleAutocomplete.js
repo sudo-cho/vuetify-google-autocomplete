@@ -478,17 +478,6 @@ export default {
       default: false,
     },
     /**
-     * Maps to Vuetify 'required' prop.
-     *
-     * @alias module:vuetify-google-autocomplete.props.required
-     * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Boolean}
-     */
-    required: {
-      type: Boolean,
-      default: false,
-    },
-    /**
      * Maps to Vuetify 'return-masked-value' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.return-masked-value
@@ -551,6 +540,15 @@ export default {
     selectionRequired: {
       type: Boolean,
       default: false,
+    },
+    /**
+     * Requires an address selection if the user changes the text.
+     *
+     * @type {Boolean}
+     */
+    selectionRequiredText: {
+      type: String,
+      default: 'Please select an address from the list.',
     },
     /**
      * Maps to Vuetify 'shaped' prop.
@@ -766,17 +764,16 @@ export default {
   }),
   computed: {
     rulesPlusInternalRules() {
-      const enforceSelectionRequired = () => {
-        if (this.selectionRequired) {
-          if (this.lastSelectedPlace.trim() === '' || this.lastSelectedPlace !== this.autocompleteText) {
-            return 'Please select an address from the list.';
-          }
-        }
+      const enforceSelectionRequired = [];
 
-        return true;
-      };
+      if (this.selectionRequired
+        && (this.lastSelectedPlace.trim() === '' || this.lastSelectedPlace !== this.autocompleteText)) {
+        enforceSelectionRequired.push(this.selectionRequiredText);
+      } else {
+        enforceSelectionRequired.push(true);
+      }
 
-      return [...this.rules, enforceSelectionRequired];
+      return [...this.rules, ...enforceSelectionRequired];
     },
   },
   /**
@@ -1096,7 +1093,6 @@ export default {
         'prepend-icon': self.prependIcon,
         'prepend-inner-icon': self.prependIconInner,
         readonly: self.readonly,
-        required: self.required,
         'return-masked-value': self.returnMaskedValue,
         reverse: self.reverse,
         rounded: self.rounded,
