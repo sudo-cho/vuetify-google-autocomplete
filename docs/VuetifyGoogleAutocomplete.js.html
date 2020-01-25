@@ -26,7 +26,7 @@
 
 <nav>
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-vuetify-google-autocomplete.html">vuetify-google-autocomplete</a></li></ul><h3>Mixins</h3><ul><li><a href="module-vuetify-google-autocomplete.created.html">created</a></li><li><a href="module-vuetify-google-autocomplete.data.html">data</a></li><li><a href="module-vuetify-google-autocomplete.destroyed.html">destroyed</a></li><li><a href="module-vuetify-google-autocomplete.methods.html">methods</a></li><li><a href="module-vuetify-google-autocomplete.mounted.html">mounted</a></li><li><a href="module-vuetify-google-autocomplete.props.html">props</a></li><li><a href="module-vuetify-google-autocomplete.render.html">render</a></li><li><a href="module-vuetify-google-autocomplete.watch.html">watch</a><ul class='methods'><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.autocompleteText">autocompleteText</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.country">country</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.enableGeolocation">enableGeolocation</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.fields">fields</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.types">types</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-vuetify-google-autocomplete.html">vuetify-google-autocomplete</a></li></ul><h3>Mixins</h3><ul><li><a href="module-vuetify-google-autocomplete.created.html">created</a></li><li><a href="module-vuetify-google-autocomplete.data.html">data</a></li><li><a href="module-vuetify-google-autocomplete.destroyed.html">destroyed</a></li><li><a href="module-vuetify-google-autocomplete.methods.html">methods</a></li><li><a href="module-vuetify-google-autocomplete.mounted.html">mounted</a></li><li><a href="module-vuetify-google-autocomplete.props.html">props</a></li><li><a href="module-vuetify-google-autocomplete.render.html">render</a></li><li><a href="module-vuetify-google-autocomplete.watch.html">watch</a><ul class='methods'><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.autocompleteText">autocompleteText</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.country">country</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.enableGeolocation">enableGeolocation</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.fields">fields</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.types">types</a></li><li data-type='method'><a href="module-vuetify-google-autocomplete.watch.html#.value">value</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -521,17 +521,6 @@ export default {
       default: false,
     },
     /**
-     * Maps to Vuetify 'required' prop.
-     *
-     * @alias module:vuetify-google-autocomplete.props.required
-     * @see {@link https://vuetifyjs.com/en/components/text-fields}
-     * @type {Boolean}
-     */
-    required: {
-      type: Boolean,
-      default: false,
-    },
-    /**
      * Maps to Vuetify 'return-masked-value' prop.
      *
      * @alias module:vuetify-google-autocomplete.props.return-masked-value
@@ -585,6 +574,24 @@ export default {
     rules: {
       type: Array,
       default: () => [],
+    },
+    /**
+     * Requires an address selection if the user changes the text.
+     *
+     * @type {Boolean}
+     */
+    selectionRequired: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Requires an address selection if the user changes the text.
+     *
+     * @type {Boolean}
+     */
+    selectionRequiredText: {
+      type: String,
+      default: 'Please select an address from the list.',
     },
     /**
      * Maps to Vuetify 'shaped' prop.
@@ -790,7 +797,28 @@ export default {
      * @access private
      */
     vgaMapState: null,
+
+    /**
+     * The address of the last place the user selected.
+     * @access private
+     * @type {String}
+     */
+    lastSelectedPlace: '',
   }),
+  computed: {
+    rulesPlusInternalRules() {
+      const enforceSelectionRequired = [];
+
+      if (this.selectionRequired
+        &amp;&amp; (this.lastSelectedPlace.trim() === '' || this.lastSelectedPlace !== this.autocompleteText)) {
+        enforceSelectionRequired.push(this.selectionRequiredText);
+      } else {
+        enforceSelectionRequired.push(true);
+      }
+
+      return [...this.rules, ...enforceSelectionRequired];
+    },
+  },
   /**
    * @mixin
    * @desc See code for members.
@@ -981,9 +1009,9 @@ export default {
         const returnData = {};
 
         if (place.name !== undefined &amp;&amp; this.placeName) {
-          document.getElementById(this.id).value = place.name;
+          this.autocompleteText = place.name;
         } else if (place.formatted_address !== undefined) {
-          document.getElementById(this.id).value = place.formatted_address;
+          this.autocompleteText = place.formatted_address;
         }
 
         if (place.address_components !== undefined) {
@@ -1016,8 +1044,15 @@ export default {
           this.$emit('placechanged', returnData, place, this.id);
 
           // update autocompleteText then emit change event
-          this.autocompleteText = document.getElementById(this.id).value;
+          this.lastSelectedPlace = this.autocompleteText;
           this.onChange();
+          if (this.validateOnBlur) {
+            // manually validate the underlying v-text-field because
+            // selecting an option causes the field to lose focus
+            // before the place_changed event is emitted and we have
+            // a chance to fill the field with the formatted address
+            this.$refs.textField.validate();
+          }
         }
       });
     },
@@ -1028,6 +1063,7 @@ export default {
    */
   created() {
     this.autocompleteText = this.value ? this.value : '';
+    this.lastSelectedPlace = this.autocompleteText;
   },
   /**
    * @mixin
@@ -1100,12 +1136,11 @@ export default {
         'prepend-icon': self.prependIcon,
         'prepend-inner-icon': self.prependIconInner,
         readonly: self.readonly,
-        required: self.required,
         'return-masked-value': self.returnMaskedValue,
         reverse: self.reverse,
         rounded: self.rounded,
         rows: self.rows,
-        rules: self.rules,
+        rules: self.rulesPlusInternalRules,
         ref: 'autocomplete',
         shaped: self.shaped,
         'single-line': self.singleLine,
@@ -1118,7 +1153,7 @@ export default {
         textarea: self.textarea,
         'toggle-keys': self.toggleKeys,
         type: self.type,
-        value: self.value || self.autocompleteText,
+        value: self.autocompleteText,
         'validate-on-blur': self.validateOnBlur,
         '@focus': self.onFocus(),
         '@blur': self.onFocus(),
@@ -1165,15 +1200,9 @@ export default {
         keypress: (e) => {
           self.onKeyPress(e.target.value);
         },
-        input: (event) => {
-          if (event &amp;&amp; event.target) {
-            self.value = event.target.value;
-            self.$emit('input', event.target.value);
-          } else if (!event) {
-            // clear was pressed, reset this
-            self.autocompleteText = '';
-            self.$emit('placechanged', null);
-          }
+        input: (value) => {
+          // NOTE: value is not an event v-text-field raises this with the actual value
+          this.autocompleteText = value;
         },
       },
     }, []);
@@ -1189,6 +1218,15 @@ export default {
       this.$emit('input', newVal || '');
     },
 
+    /**
+     * Keep autocompleteText up-to-date with v-model.
+     */
+    value: function value(newVal) {
+      if (newVal !== this.autocompleteText) {
+        this.autocompleteText = newVal;
+        this.lastSelectedPlace = newVal;
+      }
+    },
     /**
      * Update the SDK country option whenever it changes from the parent.
      */
@@ -1252,7 +1290,7 @@ export default {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Dec 31 2019 15:36:46 GMT+0200 (South Africa Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Jan 25 2020 13:16:31 GMT+0200 (South Africa Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
