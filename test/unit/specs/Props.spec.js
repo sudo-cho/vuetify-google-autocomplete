@@ -104,6 +104,25 @@ describe('Ensure component props behave as expected', () => {
     });
   });
 
+  describe('selection-required', () => {
+    test('Should have false as default if not provided', () => {
+      const wrapper = mount(Vga, {
+        localVue,
+        propsData: mandatoryProps,
+      });
+      expect(wrapper.vm.$props.selectionRequired).toBe(false);
+    });
+
+    test('Should accept boolean input', () => {
+      mandatoryProps.selectionRequired = true;
+      const wrapper = mount(Vga, {
+        localVue,
+        propsData: mandatoryProps,
+      });
+      expect(wrapper.vm.$props.selectionRequired).toBe(true);
+    });
+  });
+
   describe('background-color', () => {
     test('Should have false as default if not provided', () => {
       const wrapper = mount(Vga, {
