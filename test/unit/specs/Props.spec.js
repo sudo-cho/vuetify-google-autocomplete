@@ -644,25 +644,6 @@ describe('Ensure component props behave as expected', () => {
     });
   });
 
-  describe('required', () => {
-    test('Should have "false" as default if not provided', () => {
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.required).toBe(false);
-    });
-
-    test('Should accept boolean input', () => {
-      mandatoryProps.required = true;
-      const wrapper = mount(Vga, {
-        localVue,
-        propsData: mandatoryProps,
-      });
-      expect(wrapper.vm.$props.required).toBe(true);
-    });
-  });
-
   describe('return-masked-value', () => {
     test('Should have "false" as default if not provided', () => {
       const wrapper = mount(Vga, {
