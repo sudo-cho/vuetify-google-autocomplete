@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.891eb496f6ddb1fa01a4ed0237400df9.js"
+  "/vuetify-google-autocomplete/precache-manifest.81af5ab9ca7c82d6d95abd2e6ca394bf.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vuetify-google-autocomplete-webpack-gh-pages"});
