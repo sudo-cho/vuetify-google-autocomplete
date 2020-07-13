@@ -196,9 +196,63 @@ Please note that you need to provide the method that will listen (`v-on:placecha
 </script>
 ```
 
+### Exposed component slots
+
+The slots available are proxied [`v-text-field`](https://vuetifyjs.com/en/components/text-fields/) slots.
+
+#### append
+
+Adds an item inside the input and after input content. (Note in underlying `v-text-field` this slot overrides `append-icon` prop.)
+
+#### append-outer
+
+Adds an item inside the input and after input content. (Note in underlying `v-text-field` this slot overrides `append-outer-icon` prop.)
+
+#### label
+
+Replaces the default label
+
+#### prepend
+
+Adds an item outside the input and before input content. (Note in underlying `v-text-field` this slot overrides `prepend-icon` prop.)
+
+#### prepend-inner
+
+Adds an item inside the input and before input content.  (Note in underlying `v-text-field` this slot overrides `prepend-inner-icon` prop.)
+
+#### progress
+
+Slot for custom progress linear (displayed when **loading** prop is not equal to Boolean False)
+
+### Example
+
+Use slots as you would any other component. Example below uses `append` which uses a component rather than the `append-icon`
+props (note: this defers slot behaviour back to the `v-text-field` implementation).
+
+```html
+<template>
+    <div>
+        <h2>Your Address</h2>
+        <vuetify-google-autocomplete
+            ref="address"
+            id="map"
+            classname="form-control"
+            placeholder="Please type your address"
+            v-on:placechanged="getAddressData"
+            country="sg"
+        >
+            <template #append>
+                <!-- my fancy component rather than a simple icon -->
+                <my-btn/>
+            </template>
+        </vuetify-google-autocomplete>
+    </div>
+</template>
+```
+
 ## Contributing
 
-Lets make this an awesome vuetify component! Collaborations and contributions are welcome!
+Let's make this an awesome vuetify component! Collaborations and contributions are welcome!
 
 [code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
 
