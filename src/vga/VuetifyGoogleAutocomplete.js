@@ -950,7 +950,8 @@ export default {
       // Override the default placeholder
       // text set by Google with the
       // placeholder prop value or an empty value.
-      document.getElementById(this.id).setAttribute('placeholder', this.placeholder ? this.placeholder : '');
+      document.getElementById(this.id)
+        .setAttribute('placeholder', this.placeholder ? this.placeholder : '');
 
       this.autocomplete.addListener('place_changed', () => {
         const place = this.autocomplete.getPlace();
@@ -1162,7 +1163,17 @@ export default {
           this.autocompleteText = value;
         },
       },
-    }, []);
+    },
+    [
+      'append',
+      'append-outer',
+      'label',
+      'message',
+      'prepend',
+      'prepend-inner',
+      'progress',
+    ]
+      .map(slot => createElement('template', { slot }, [this.$slots[slot]])));
   },
   /**
    * @mixin
