@@ -1,6 +1,6 @@
 {
   "name": "vuetify-google-autocomplete",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A Vuetify ready Vue.jS component to Google Places Autocomplete",
   "author": "Madi Shika <mmjshika@gmail.com>",
   "keywords": [
@@ -30,7 +30,9 @@
     "build": "node build/build.js",
     "build:lib": "rm -rf ./lib && mkdir -p ./lib && babel ./src/vga/ -d ./lib --compact --minified --no-comments"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vuetify": "^2.3.4"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.26.0",
@@ -88,7 +90,6 @@
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.6.11",
     "vue-test-utils": "^1.0.0-beta.11",
-    "vuetify": "^2.1.15",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.11.5",

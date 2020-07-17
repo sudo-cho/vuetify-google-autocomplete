@@ -1,3 +1,5 @@
+import { VTextField } from 'vuetify/lib';
+
 /**
  * @module vuetify-google-autocomplete
  * @author Madimetja Shika <madi@mjshika.xyz>
@@ -716,6 +718,9 @@ export default {
       default: undefined,
       required: false,
     },
+  },
+  components: {
+    VTextField,
   },
   /**
    * @mixin
