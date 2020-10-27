@@ -46,9 +46,35 @@ Vue.use(VuetifyGoogleAutocomplete, {
   apiKey: '...', // Can also be an object. E.g, for Google Maps Premium API, pass `{ client: <YOUR-CLIENT-ID> }`
   version: '...', // Optional
   language: '...', // Optional
+  vueGoogleMapsCompatibility: false, // Optional (default: false) - true, requires vue2-google-maps to be configured see https://github.com/xkjyeah/vue-google-maps
 });
 ```
 
+For use with `vue2-google-maps`
+```javascript
+import Vue from 'vue';
+import * as VueGoogleMaps from 'vue2-google-maps';
+import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete';
+
+// @see https://www.npmjs.com/package/vue2-google-maps
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'xxxxxxxxs',
+        // This is required to use the Autocomplete plugin
+        libraries: 'places', // 'places,drawing,visualization'
+    },
+});
+
+Vue.use(VuetifyGoogleAutocomplete, {
+    /*
+      not used as loaded with component
+      apiKey: key,
+    */
+    vueGoogleMapsCompatibility: true,
+});
+
+
+```
 ### For version <= 1.1.0
 
 This component uses Google Maps Places API to get geo suggests for autocompletion, so you have to include the Google Maps Places API in the `<head>` of your HTML:
