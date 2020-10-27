@@ -16,6 +16,24 @@ VuetifyGoogleAutocomplete.install = (Vue, options) => {
   // Set defaults
   options = {
     /*
+     *  If you want to manually install components, e.g.
+     *       import VuetifyGoogleAutoComplete from 'vuetify-google-autocomplete';
+     *
+     *   Vue.component('VuetifyGoogleAutoComplete', VuetifyGoogleAutoComplete)
+     *
+     *  or locally:
+     *   then set installComponents to 'false'.
+     *
+     *  If you want to automatically install all the components this property must be set to 'true':
+     *
+     * Note: Typescript will require a declaration
+     *
+     * index.d.ts
+     * declare module 'vuetify-google-autocomplete';
+     *
+     */
+    installComponents: true,
+    /*
      * Allow this component to be used in conjunction with vue2-google-maps and loads maps API
      * via the other component.
      *
@@ -35,10 +53,12 @@ VuetifyGoogleAutocomplete.install = (Vue, options) => {
   if (options.apiKey) {
     if (!options.vueGoogleMapsCompatibility) {
       loadGoogleMaps(options.apiKey, options.version, options.language);
-    } // else use vue2-google-maps to load maps via deferred/promise-based loading mechanism on Vue.$gmapApiPromiseLazy
+    } // else use vue2-google-maps to load maps via loading mechanism on Vue.$gmapApiPromiseLazy
   }
 
-  Vue.component(VuetifyGoogleAutocomplete.name, VuetifyGoogleAutocomplete);
+  if (options.installComponents) {
+    Vue.component(VuetifyGoogleAutocomplete.name, VuetifyGoogleAutocomplete);
+  }
 };
 
 export default VuetifyGoogleAutocomplete;
