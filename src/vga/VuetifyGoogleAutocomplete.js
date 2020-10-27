@@ -910,12 +910,16 @@ export default {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             };
-            const circle = new window.google.maps.Circle({
-              center: geolocation,
-              radius: position.coords.accuracy,
+
+            // initialise up knowing that google maps is actually loaded
+            this.setupGmapApi(() => {
+              const circle = new window.google.maps.Circle({
+                center: geolocation,
+                radius: position.coords.accuracy,
+              });
+              this.autocomplete.setBounds(circle.getBounds());
+              this.geolocateSet = true;
             });
-            this.autocomplete.setBounds(circle.getBounds());
-            this.geolocateSet = true;
           });
         }
       }
@@ -942,77 +946,104 @@ export default {
         }
       }
 
-      this.autocomplete = new window.google.maps.places.Autocomplete(
-        document.getElementById(this.id),
-        options,
-      );
+      // initialise up knowing that google maps is actually loaded
+      this.setupGmapApi(() => {
+        this.autocomplete = new window.google.maps.places.Autocomplete(
+          document.getElementById(this.id),
+          options,
+        );
+
+        // this is potentially inside a promise so the autocomplete MUST exist to add the listener
+        this.autocomplete.addListener('place_changed', () => {
+          const place = this.autocomplete.getPlace();
+
+          // if (!place || !place.geometry) {
+          if (Object.keys(place).length < 2) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            this.$emit('no-results-found', place);
+            return;
+          }
+
+          const returnData = {};
+
+          if (place.name !== undefined && this.placeName) {
+            this.autocompleteText = place.name;
+          } else if (place.formatted_address !== undefined) {
+            this.autocompleteText = place.formatted_address;
+          }
+
+          if (place.address_components !== undefined) {
+            // Get each component of the address from the place details
+            for (let i = 0; i < place.address_components.length; i += 1) {
+              const addressType = place.address_components[i].types[0];
+
+              if (this.addressComponents[addressType]) {
+                const val = place.address_components[i][this.addressComponents[addressType]];
+                returnData[addressType] = val;
+              }
+            }
+            if (place.geometry) {
+              returnData.latitude = place.geometry.location.lat();
+              returnData.longitude = place.geometry.location.lng();
+            }
+
+            // additional fields available in google places results
+            if (place.name) {
+              returnData.name = place.name;
+            }
+            if (place.photos) {
+              returnData.photos = place.photos;
+            }
+            if (place.place_id) {
+              returnData.place_id = place.place_id;
+            }
+
+            // return returnData object and PlaceResult object
+            this.$emit('placechanged', returnData, place, this.id);
+
+            // update autocompleteText then emit change event
+            this.lastSelectedPlace = this.autocompleteText;
+            this.onChange();
+            if (this.validateOnBlur) {
+              // manually validate the underlying v-text-field because
+              // selecting an option causes the field to lose focus
+              // before the place_changed event is emitted and we have
+              // a chance to fill the field with the formatted address
+              this.$refs.textField.validate();
+            }
+          }
+        });
+      });
+
 
       // Override the default placeholder
       // text set by Google with the
       // placeholder prop value or an empty value.
       document.getElementById(this.id)
         .setAttribute('placeholder', this.placeholder ? this.placeholder : '');
+    },
 
-      this.autocomplete.addListener('place_changed', () => {
-        const place = this.autocomplete.getPlace();
-
-        // if (!place || !place.geometry) {
-        if (Object.keys(place).length < 2) {
-          // User entered the name of a Place that was not suggested and
-          // pressed the Enter key, or the Place Details request failed.
-          this.$emit('no-results-found', place);
-          return;
+    /**
+     * Uses the gmap deferred loading strategy from the third-party library rather than the
+     * default strategy of this library.
+     *
+     * @remarks
+     *  fixes https://github.com/MadimetjaShika/vuetify-google-autocomplete/issues/60
+     * @private
+     */
+    setupGmapApi(callback) {
+      if (this.$vueGoogleMapsCompatibility) {
+        if (Object.prototype.hasOwnProperty.call(this, '$gmapApiPromiseLazy')) {
+          this.$gmapApiPromiseLazy()
+            .then(() => callback());
         }
-
-        const returnData = {};
-
-        if (place.name !== undefined && this.placeName) {
-          this.autocompleteText = place.name;
-        } else if (place.formatted_address !== undefined) {
-          this.autocompleteText = place.formatted_address;
-        }
-
-        if (place.address_components !== undefined) {
-          // Get each component of the address from the place details
-          for (let i = 0; i < place.address_components.length; i += 1) {
-            const addressType = place.address_components[i].types[0];
-
-            if (this.addressComponents[addressType]) {
-              const val = place.address_components[i][this.addressComponents[addressType]];
-              returnData[addressType] = val;
-            }
-          }
-          if (place.geometry) {
-            returnData.latitude = place.geometry.location.lat();
-            returnData.longitude = place.geometry.location.lng();
-          }
-
-          // additional fields available in google places results
-          if (place.name) {
-            returnData.name = place.name;
-          }
-          if (place.photos) {
-            returnData.photos = place.photos;
-          }
-          if (place.place_id) {
-            returnData.place_id = place.place_id;
-          }
-
-          // return returnData object and PlaceResult object
-          this.$emit('placechanged', returnData, place, this.id);
-
-          // update autocompleteText then emit change event
-          this.lastSelectedPlace = this.autocompleteText;
-          this.onChange();
-          if (this.validateOnBlur) {
-            // manually validate the underlying v-text-field because
-            // selecting an option causes the field to lose focus
-            // before the place_changed event is emitted and we have
-            // a chance to fill the field with the formatted address
-            this.$refs.textField.validate();
-          }
-        }
-      });
+      } else if (Object.prototype.hasOwnProperty.call(window, 'google')) {
+        callback();
+      } else {
+        // no logger with this library. But this is a likely configuration error condition
+        // Note: unwilling to throw an Error
+      }
     },
   },
   /**
@@ -1029,12 +1060,7 @@ export default {
    */
   mounted() {
     this.vgaMapState = window.vgaMapState;
-    // if (Object.prototype.hasOwnProperty.call(window, 'google')
-    //   && Object.prototype.hasOwnProperty.call(window, 'maps')) {
-    if (Object.prototype.hasOwnProperty.call(window, 'google')) {
-      // we've been here before. just need to get Autocomplete loaded
-      this.setupGoogle();
-    }
+    this.setupGmapApi(this.setupGoogle);
   },
   /**
    * @mixin
@@ -1228,10 +1254,19 @@ export default {
       this.enableGeolocation = newVal;
     },
 
+    /**
+     * Watches the internal initialisation flag (callback from google maps loading) and
+     * when changes works out the google maps load strategy. In the case that requires
+     * vue2-google-maps compatibility the known lazy load strategy from that library is used.
+     */
     'vgaMapState.initMap': function vgaMapStateInitMap(value) {
       if (value) {
-        this.setupGoogle();
+        this.setupGmapApi(this.setupGoogle);
       }
+    },
+
+    'window.vueGoogleMapsInit': function vgaMapStateInitMap() {
+      window.vgaMapState.initMap = true;
     },
 
     /**
