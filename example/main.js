@@ -2,8 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueClipboards from 'vue-clipboards';
-import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
 import App from './App';
 import router from './router';
 import VuetifyGoogleAutocomplete from '../src/vga/index';
@@ -67,5 +65,4 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
-  vuetify: new Vuetify(vuetifyOptions),
 });
